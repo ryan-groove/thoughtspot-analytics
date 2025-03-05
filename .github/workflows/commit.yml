@@ -13,7 +13,7 @@ on:
 env:
     # CS TOOLS IS COMMAND LINE LIBRARY WRAPPING TS APIS
     # https://thoughtspot.github.io/cs_tools/tools/git/
-    CS_TOOLS_VERSION: v1.5.13b1
+    CS_TOOLS_VERSION: v1.6.1
     CS_TOOLS_THOUGHTSPOT__URL: ${{ secrets.DEV_THOUGHTSPOT_URL }}
     CS_TOOLS_THOUGHTSPOT__USERNAME: ${{ secrets.DEV_THOUGHTSPOT_USERNAME }}
     CS_TOOLS_THOUGHTSPOT__PASSWORD: ${{ secrets.DEV_THOUGHTSPOT_SECRET_KEY }}
@@ -46,4 +46,4 @@ jobs:
         run: pip install "cs_tools[cli] @ https://github.com/thoughtspot/cs_tools/archive/${{ env.CS_TOOLS_VERSION }}.zip"
 
       - name: Run the GIT COMMIT command
-        run: "cs_tools tools git branches commit --tag ${{ env.TS_OBJECT_TAG }} --comment \"${{ env.TS_COMMIT_MESSAGE }}\" --org ${{ env.TS_SOURCE_ORG_ID }} --config ENV:"
+        run: "cs_tools tools git branches commit --tags ${{ env.TS_OBJECT_TAG }} --metadata-types TABLE,VIEW,SQL_VIEW,MODEL,LIVEBOARD,ANSWER --comment \"${{ env.TS_COMMIT_MESSAGE }}\" --org ${{ env.TS_SOURCE_ORG_ID }} --config ENV:"
